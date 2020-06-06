@@ -1,0 +1,51 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '2.2.0.RELEASE'
+}
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.hjs.micro.opta'
+version '1.0.0'
+
+    
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven {
+    url 'https://repository.jboss.org/nexus/content/groups/public/'
+  }
+
+}
+test {
+    useJUnitPlatform {
+        includeTags  'unit', 'it'
+        // excludeTags 'slow', 'ci', 'it'
+        includeEngines 'junit-jupiter'
+        excludeEngines 'junit-vintage'
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+        exclude(group: 'junit', module: 'junit')
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'com.h2database:h2'
+
+
+  implementation 'org.optaplanner:optaplanner-core:6.5.0.Final'
+  implementation 'org.optaplanner:optaplanner-persistence-xstream:6.5.0.Final'
+
+  implementation platform('org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR3')
+}
+
