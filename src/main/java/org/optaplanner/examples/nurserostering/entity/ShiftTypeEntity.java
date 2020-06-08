@@ -1,6 +1,7 @@
 package org.optaplanner.examples.nurserostering.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "shift_type")
@@ -21,6 +22,12 @@ public class ShiftTypeEntity {
     private boolean night;
     private String description;
 
+    @ManyToMany
+    @JoinTable(name = "shift_type_skill_requirement",
+            joinColumns = @JoinColumn(name = "shift_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private Set<SkillEntity> requiredSkills;
+
     public ShiftTypeEntity() {
     }
 
@@ -32,6 +39,7 @@ public class ShiftTypeEntity {
         this.endTimeString = endTimeString;
         this.night = night;
         this.description = description;
+
     }
 
     public Long getId() {
@@ -88,5 +96,13 @@ public class ShiftTypeEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<SkillEntity> getRequiredSkills() {
+        return requiredSkills;
+    }
+
+    public void setRequiredSkills(Set<SkillEntity> requiredSkills) {
+        this.requiredSkills = requiredSkills;
     }
 }
