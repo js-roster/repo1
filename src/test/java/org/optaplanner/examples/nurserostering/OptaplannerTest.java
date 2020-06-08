@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.optaplanner.examples.nurserostering.domain.DayOfWeek;
 import org.optaplanner.examples.nurserostering.domain.ShiftDate;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,5 +34,12 @@ public class OptaplannerTest {
         ShiftDate shiftDate = new ShiftDate();
         String objStr = objectMapper.writeValueAsString(shiftDate);
         System.out.println(objStr);
+    }
+
+    @Test
+    public void dayTest() {
+        System.out.println(DayOfWeek.FRIDAY);
+        Arrays.stream(DayOfWeek.values())
+                .forEach(d -> System.out.println(d.getCode() + ", " + d.ordinal()));
     }
 }

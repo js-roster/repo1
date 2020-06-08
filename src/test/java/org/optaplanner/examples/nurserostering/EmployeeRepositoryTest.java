@@ -3,7 +3,6 @@ package org.optaplanner.examples.nurserostering;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import org.hibernate.annotations.SQLInsert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
