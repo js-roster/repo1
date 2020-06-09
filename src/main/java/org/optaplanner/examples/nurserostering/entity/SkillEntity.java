@@ -1,5 +1,7 @@
 package org.optaplanner.examples.nurserostering.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,6 +16,7 @@ public class SkillEntity {
     String code;
 
     @ManyToMany(mappedBy = "requiredSkills")
+    @JsonIgnore
     Set<ShiftTypeEntity> required;
 
     public Long getId() {

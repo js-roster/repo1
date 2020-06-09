@@ -1,5 +1,7 @@
 package org.optaplanner.examples.nurserostering.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -27,6 +29,10 @@ public class ShiftTypeEntity {
             joinColumns = @JoinColumn(name = "shift_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<SkillEntity> requiredSkills;
+
+    @OneToMany(mappedBy = "shiftTypeEntity")
+    @JsonIgnore
+    Set<ShiftEntity> shiftEntities;
 
     public ShiftTypeEntity() {
     }
@@ -104,5 +110,13 @@ public class ShiftTypeEntity {
 
     public void setRequiredSkills(Set<SkillEntity> requiredSkills) {
         this.requiredSkills = requiredSkills;
+    }
+
+    public Set<ShiftEntity> getShiftEntities() {
+        return shiftEntities;
+    }
+
+    public void setShiftEntities(Set<ShiftEntity> shiftEntities) {
+        this.shiftEntities = shiftEntities;
     }
 }
