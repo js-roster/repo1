@@ -1,6 +1,7 @@
 package org.optaplanner.examples.nurserostering.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.optaplanner.examples.nurserostering.domain.pattern.WorkBeforeFreeSequencePattern;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -33,6 +34,30 @@ public class ShiftTypeEntity {
     @OneToMany(mappedBy = "shiftTypeEntity")
     @JsonIgnore
     Set<ShiftEntity> shiftEntities;
+
+    @OneToMany(mappedBy = "shiftTypeEntity")
+    @JsonIgnore
+    Set<WorkBeforeFreeSequencePatternEntity> workBeforeFreeSequencePatternEntities;
+
+    @OneToMany(mappedBy = "dayIndex0ShiftType")
+    @JsonIgnore
+    Set<ShiftType2DaysPatternEntity> shiftType2DaysPatternEntitiesIndex0;
+
+    @OneToMany(mappedBy = "dayIndex1ShiftType")
+    @JsonIgnore
+    Set<ShiftType2DaysPatternEntity> shiftType2DaysPatternEntitiesIndex1;
+
+    @OneToMany(mappedBy = "dayIndex0ShiftType")
+    @JsonIgnore
+    Set<ShiftType3DaysPatternEntity> shiftType3DaysPatternEntitiesIndex0;
+
+    @OneToMany(mappedBy = "dayIndex1ShiftType")
+    @JsonIgnore
+    Set<ShiftType3DaysPatternEntity> shiftType3DaysPatternEntitiesIndex1;
+
+    @OneToMany(mappedBy = "dayIndex2ShiftType")
+    @JsonIgnore
+    Set<ShiftType3DaysPatternEntity> shiftType3DaysPatternEntitiesIndex2;
 
     public ShiftTypeEntity() {
     }
@@ -118,5 +143,13 @@ public class ShiftTypeEntity {
 
     public void setShiftEntities(Set<ShiftEntity> shiftEntities) {
         this.shiftEntities = shiftEntities;
+    }
+
+    public Set<WorkBeforeFreeSequencePatternEntity> getWorkBeforeFreeSequencePatternEntities() {
+        return workBeforeFreeSequencePatternEntities;
+    }
+
+    public void setWorkBeforeFreeSequencePatternEntities(Set<WorkBeforeFreeSequencePatternEntity> workBeforeFreeSequencePatternEntities) {
+        this.workBeforeFreeSequencePatternEntities = workBeforeFreeSequencePatternEntities;
     }
 }
