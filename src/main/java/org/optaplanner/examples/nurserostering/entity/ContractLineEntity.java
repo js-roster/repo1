@@ -1,28 +1,26 @@
 package org.optaplanner.examples.nurserostering.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.optaplanner.examples.nurserostering.domain.contract.ContractLineType;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "pattern")
+@Table(name = "contract_line")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "pat_class", discriminatorType = DiscriminatorType.STRING, length = 50)
-public class PatternEntity {
+@DiscriminatorColumn(name = "cnt_ln_cls", discriminatorType = DiscriminatorType.STRING, length = 50)
+public class ContractLineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-
-    @Column(name = "pat_cd", length = 50)
-    protected String code;
-
-    protected int weight;
+    @Enumerated(EnumType.STRING)
+    protected ContractLineType contractLineType;
 
     @ManyToOne
     @JoinColumn(name = "cntr_id")
     @JsonIgnore
     protected ContractEntity contractEntity;
+
 
     public Long getId() {
         return id;
@@ -32,20 +30,12 @@ public class PatternEntity {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public ContractLineType getContractLineType() {
+        return contractLineType;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setContractLineType(ContractLineType contractLineType) {
+        this.contractLineType = contractLineType;
     }
 
     public ContractEntity getContractEntity() {
