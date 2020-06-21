@@ -30,6 +30,10 @@ public class EmployeeEntity {
     )
     Set<SkillEntity> skillEntities;
 
+    @ManyToOne
+    @JoinColumn(name = "contract_id")
+    ContractEntity contractEntity;
+
 
     @Column(name="emp_cd",unique = true, nullable = false,length = 50)
     String code;
@@ -80,5 +84,13 @@ public class EmployeeEntity {
 
     public void setSkillEntities(Set<SkillEntity> skillEntities) {
         this.skillEntities = skillEntities;
+    }
+
+    public ContractEntity getContractEntity() {
+        return contractEntity;
+    }
+
+    public void setContractEntity(ContractEntity contractEntity) {
+        this.contractEntity = contractEntity;
     }
 }

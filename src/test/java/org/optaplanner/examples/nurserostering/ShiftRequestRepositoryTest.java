@@ -15,7 +15,7 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@Tag("jpa")
+@Tag("unit")
 @DataJpaTest
 public class ShiftRequestRepositoryTest {
     @Autowired

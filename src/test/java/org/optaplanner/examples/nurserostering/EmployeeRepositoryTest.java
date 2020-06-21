@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.optaplanner.examples.nurserostering.entity.ContractEntity;
 import org.optaplanner.examples.nurserostering.entity.EmployeeEntity;
 import org.optaplanner.examples.nurserostering.repo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Tag("unit")
+@Tag("jpa")
 @DataJpaTest
 @EnableTransactionManagement
 public class EmployeeRepositoryTest {
@@ -97,5 +98,45 @@ public class EmployeeRepositoryTest {
 
         EmployeeEntity emp2 = employeeRepository.findById(1002L).get();
         assertThat(emp2.getSkillEntities().size(), is(0));
+    }
+
+    @Test
+    @SqlGroup({
+            @Sql("insert_shift_type.sql"),
+            @Sql("insert_pattern.sql"),
+            @Sql("insert_contract_line.sql"),
+            @Sql("insert_contract.sql"),
+            @Sql("insert_employee_contract.sql")
+    })
+    public void contractTest() {
+        EmployeeEntity e1 = employeeRepository.findById(1L).get();
+        assertThat(e1.getContractEntity(), isA(ContractEntity.class));
+    }
+
+    @Test
+    @SqlGroup({
+            @Sql("insert_employee.sql"),
+            @Sql("insert_skill.sql"),
+            @Sql("insert_shift_type.sql"),
+            @Sql("insert_shift_type_skills.sql"),
+            @Sql("insert_shift_date.sql"),
+            @Sql("insert_shift.sql"),
+            @Sql("insert_shift_request.sql")
+    })
+    public void shiftRequestTest() {
+        EmployeeEntity e1 = employeeRepository.findById(1001L).get();
+        assertThat(e1.getShiftRequestEntities().size(), is(1));
+    }
+
+    @Test
+    @SqlGroup({
+            @Sql("insert_employee.sql"),
+            @Sql("insert_shift_date.sql"),
+            @Sql("insert_day_request.sql")
+    })
+    public void dayRequestTest() {
+        EmployeeEntity e1 = employeeRepository.findById(1001L).get();
+        assertThat(e1.getDayRequestEntities().size(), is(1));
+
     }
 }

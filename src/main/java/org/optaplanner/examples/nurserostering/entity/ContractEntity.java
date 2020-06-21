@@ -1,9 +1,11 @@
 package org.optaplanner.examples.nurserostering.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.optaplanner.examples.nurserostering.domain.WeekendDefinition;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "contract")
@@ -22,6 +24,10 @@ public class ContractEntity {
 
     @OneToMany(mappedBy = "contractEntity")
     List<PatternEntity> patternEntities;
+
+    @OneToMany(mappedBy = "contractEntity")
+    @JsonIgnore
+    Set<EmployeeEntity> employeeEntities;
 
     public Long getId() {
         return id;
