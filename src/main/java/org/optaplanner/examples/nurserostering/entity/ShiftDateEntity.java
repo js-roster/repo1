@@ -8,9 +8,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "shift_date")
+@SequenceGenerator(name = "shift_date_seq")
 public class ShiftDateEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_date_seq")
     private Long id;
 
     @Column(name = "day_idx")
@@ -25,6 +26,10 @@ public class ShiftDateEntity {
     @OneToMany(mappedBy = "shiftDateEntity")
     @JsonIgnore
     Set<ShiftEntity> shiftEntities;
+
+    @OneToMany(mappedBy = "shiftDateEntity")
+    @JsonIgnore
+    Set<DayRequestEntity> dayRequestEntities;
 
 
     public Long getId() {

@@ -8,10 +8,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "shift_type")
+@SequenceGenerator(name = "shift_type_seq")
 public class ShiftTypeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_type_seq")
     Long id;
 
     @Column(name="type_cd", length = 20, nullable = false, unique = true)
@@ -27,7 +28,7 @@ public class ShiftTypeEntity {
 
     @ManyToMany
     @JoinTable(name = "shift_type_skill_requirement",
-            joinColumns = @JoinColumn(name = "shift_id"),
+            joinColumns = @JoinColumn(name = "shift_type_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private Set<SkillEntity> requiredSkills;
 

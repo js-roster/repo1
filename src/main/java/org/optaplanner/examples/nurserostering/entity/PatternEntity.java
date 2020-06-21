@@ -9,9 +9,10 @@ import java.util.List;
 @Table(name = "pattern")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "pat_class", discriminatorType = DiscriminatorType.STRING, length = 50)
+@SequenceGenerator(name = "pattern_seq")
 public class PatternEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pattern_seq")
     protected Long id;
 
     @Column(name = "pat_cd", length = 50)

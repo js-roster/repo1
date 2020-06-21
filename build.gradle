@@ -25,8 +25,8 @@ repositories {
 }
 test {
     useJUnitPlatform {
-        includeTags  'unit', 'it'
-        // excludeTags 'slow', 'ci', 'it'
+        includeTags  'jpa', 'unit'
+        //excludeTags 'unit', 'ci', 'it'
         includeEngines 'junit-jupiter'
         excludeEngines 'junit-vintage'
     }

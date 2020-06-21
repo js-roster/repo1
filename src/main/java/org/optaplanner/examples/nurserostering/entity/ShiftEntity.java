@@ -1,21 +1,29 @@
 package org.optaplanner.examples.nurserostering.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "shift")
+@SequenceGenerator(name = "shift_seq")
 public class ShiftEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_seq")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "shift_id")
+    @JoinColumn(name = "shift_dte_id")
     private ShiftDateEntity shiftDateEntity;
 
     @ManyToOne
     @JoinColumn(name = "shift_type_id")
     private ShiftTypeEntity shiftTypeEntity;
+
+    @OneToMany(mappedBy = "shiftEntity")
+    @JsonIgnore
+    Set<ShiftRequestEntity> shiftRequestEntities;
 
     private int index;
 

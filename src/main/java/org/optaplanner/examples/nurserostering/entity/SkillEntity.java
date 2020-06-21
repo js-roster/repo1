@@ -7,9 +7,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "skill")
+@SequenceGenerator(name = "skill_seq")
 public class SkillEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skill_seq")
     Long id;
 
     @Column(name="skill_cd", length = 20, nullable = false, unique = true)

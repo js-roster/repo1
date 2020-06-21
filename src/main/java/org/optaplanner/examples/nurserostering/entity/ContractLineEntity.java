@@ -9,9 +9,10 @@ import javax.persistence.*;
 @Table(name = "contract_line")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "cnt_ln_cls", discriminatorType = DiscriminatorType.STRING, length = 50)
+@SequenceGenerator(name = "contract_line_seq")
 public class ContractLineEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_line_seq")
     protected Long id;
     @Enumerated(EnumType.STRING)
     protected ContractLineType contractLineType;
