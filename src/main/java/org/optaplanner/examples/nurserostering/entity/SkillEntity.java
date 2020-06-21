@@ -20,6 +20,10 @@ public class SkillEntity {
     @JsonIgnore
     Set<ShiftTypeEntity> required;
 
+    @ManyToMany(mappedBy = "skillEntities")
+    @JsonIgnore
+    Set<EmployeeEntity> employeeEntities;
+
     public Long getId() {
         return id;
     }

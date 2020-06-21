@@ -1,5 +1,7 @@
 package org.optaplanner.examples.nurserostering.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class ShiftRequestEntity {
 
     @ManyToOne
     @JoinColumn(name = "emp_id")
+    @JsonIgnore
     EmployeeEntity employeeEntity;
 
     @ManyToOne

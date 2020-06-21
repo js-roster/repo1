@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
@@ -82,5 +83,19 @@ public class EmployeeRepositoryTest {
             employeeRepository.save(employeeEntity);
             employeeRepository.findAll();
         });
+    }
+
+    @Test
+    @SqlGroup({
+            @Sql("insert_employee.sql"),
+            @Sql("insert_skill.sql"),
+            @Sql("insert_skill_proficiency.sql")
+    })
+    public void employeeSkillTest() {
+        EmployeeEntity emp = employeeRepository.findById(1001L).get();
+        assertThat(emp.getSkillEntities().size(), is(3));
+
+        EmployeeEntity emp2 = employeeRepository.findById(1002L).get();
+        assertThat(emp2.getSkillEntities().size(), is(0));
     }
 }
