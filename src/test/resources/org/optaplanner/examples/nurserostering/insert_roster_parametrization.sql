@@ -1,0 +1,1 @@
+insert into roster_parametrization (id, first_shift_date_id, last_shift_date_id, plan_win_start_id) values (1, 1, 2, 1)
