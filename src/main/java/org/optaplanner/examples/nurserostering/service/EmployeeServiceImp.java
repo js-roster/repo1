@@ -24,13 +24,13 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-        return null;
+        return fromEntity(employeeRepository.save(fromDomain(employee)));
     }
 
     @Override
     public Employee getEmployeeById(int id) {
-        return null;
-    }
+        return fromEntity(employeeRepository.findById((Long.valueOf(id))).get());
+     }
 
     @Override
     public void deleteEmployeeById(int id) {
@@ -43,11 +43,15 @@ public class EmployeeServiceImp implements EmployeeService {
         employee.setId(employeeEntity.getId().intValue());
         employee.setName(employeeEntity.getName());
         employee.setCode(employeeEntity.getCode());
-        return null;
+        return employee;
     }
 
     @Override
     public EmployeeEntity fromDomain(Employee employee) {
-        return null;
+        EmployeeEntity employeeEntity = new EmployeeEntity();
+        employeeEntity.setId(Long.valueOf(employee.getId()));
+        employeeEntity.setCode(employee.getCode());
+        employeeEntity.setName(employee.getName());
+        return employeeEntity;
     }
 }

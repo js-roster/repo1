@@ -25,7 +25,7 @@ repositories {
 }
 test {
     useJUnitPlatform {
-        includeTags  'jpa'
+        includeTags  'jpa', "unit", "it"
         //excludeTags 'unit', 'ci', 'it'
         includeEngines 'junit-jupiter'
         excludeEngines 'junit-vintage'
@@ -41,6 +41,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testRuntimeOnly 'com.h2database:h2'
+    testRuntimeOnly 'org.springframework.boot:spring-boot-starter-webflux'
+    runtimeOnly 'com.h2database:h2'
 
 
   implementation 'org.optaplanner:optaplanner-core:6.5.0.Final'

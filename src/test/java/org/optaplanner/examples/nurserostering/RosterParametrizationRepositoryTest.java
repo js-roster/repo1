@@ -18,7 +18,7 @@ import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 
-@Tag("jpa")
+@Tag("unit")
 @DataJpaTest
 public class RosterParametrizationRepositoryTest {
     @Autowired

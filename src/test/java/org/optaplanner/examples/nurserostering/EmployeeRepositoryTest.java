@@ -21,7 +21,7 @@ import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.List;
 
-@Tag("jpa")
+@Tag("unit")
 @DataJpaTest
 @EnableTransactionManagement
 public class EmployeeRepositoryTest {
@@ -47,14 +47,12 @@ public class EmployeeRepositoryTest {
     }
 
     @Test
-    @Sql("insert_employee.sql")
     public void getAllTest() {
         List<EmployeeEntity> ems = employeeRepository.getAll();
         assertThat(ems, hasSize(3));
     }
 
     @Test
-    @Sql("insert_employee.sql")
     public void getByWildName() {
         List<EmployeeEntity> ems = employeeRepository.getByWildName("Jim");
         assertThat(ems, hasSize(0));
@@ -66,13 +64,8 @@ public class EmployeeRepositoryTest {
 
     @Test
     public void getByNameTest() {
-        EmployeeEntity employeeEntity = new EmployeeEntity();
-        employeeEntity.setName("John");
-        employeeEntity.setCode("A001");
-
-        employeeRepository.save(employeeEntity);
         EmployeeEntity r = employeeRepository.getByName("john");
-        assertThat(r.getCode(), is("A001"));
+        assertThat(r.getCode(), is("I0301"));
         assertThat(r.getName(), is(equalTo("John")));
     }
 
