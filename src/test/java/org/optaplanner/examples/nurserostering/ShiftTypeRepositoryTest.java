@@ -29,8 +29,8 @@ public class ShiftTypeRepositoryTest {
     @Sql("insert_shift_type.sql")
     public void getAllTest() {
         List<ShiftTypeEntity> stes = shiftTypeRepository.getAll();
-        assertThat(stes, hasSize(3));
-        long cnt = stes.stream().filter(s -> s.getId() == 1 && s.getIndex() == 1 && s.getCode().equals("Early") && !s.isNight()).count();
+        assertThat(stes, hasSize(8));
+        long cnt = stes.stream().filter(s -> s.getId() == 1 && s.getIndex() == 11 && s.getCode().equals("Early") && !s.isNight()).count();
         assertThat(cnt, is(1L));
     }
 

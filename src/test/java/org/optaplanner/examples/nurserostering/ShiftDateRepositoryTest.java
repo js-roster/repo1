@@ -37,13 +37,12 @@ public class ShiftDateRepositoryTest {
         shiftDateEntity.setDateString(sdf.format(dte));
         shiftDateRepository.save(shiftDateEntity);
         long cnt = StreamSupport.stream(shiftDateRepository.findAll().spliterator(), false).count();
-        assertThat(cnt, is(1L));
+        assertThat(cnt, is(15L));
     }
 
     @Test
-    @Sql("insert_shift_date.sql")
     public void listAll() {
         long cnt = StreamSupport.stream(shiftDateRepository.findAll().spliterator(), false).count();
-        assertThat(cnt, is(2L));
+        assertThat(cnt, is(14L));
     }
 }

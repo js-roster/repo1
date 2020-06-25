@@ -27,7 +27,7 @@ public class SkillRepositoryTest {
     @Sql("insert_skill.sql")
     public void getAllTest() {
         long cnt = skillRepository.getAll().size();
-        assertThat(cnt, is(3L));
+        assertThat(cnt, is(6L));
     }
 
     @Test

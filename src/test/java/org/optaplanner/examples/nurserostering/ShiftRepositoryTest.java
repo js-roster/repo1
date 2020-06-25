@@ -2,6 +2,7 @@ package org.optaplanner.examples.nurserostering;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.optaplanner.examples.nurserostering.entity.ShiftDateEntity;
@@ -15,11 +16,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 @Tag("unit")
 @DataJpaTest
@@ -53,8 +55,7 @@ public class ShiftRepositoryTest {
         shiftEntity.setShiftTypeEntity(shiftTypeEntity);
         shiftEntity.setIndex(1);
         ShiftEntity r = shiftRepository.save(shiftEntity);
-        long cnt = StreamSupport.stream(shiftRepository.findAll().spliterator(), false).count();
-        assertThat(cnt, is(1L));
+        assertThat(r.getId(), isA(Long.class));
     }
 
     @Test
@@ -67,10 +68,7 @@ public class ShiftRepositoryTest {
     })
     public void findAllTest() throws JsonProcessingException {
         long cnt = StreamSupport.stream(shiftRepository.findAll().spliterator(), false).count();
-        assertThat(cnt, is(1L));
-        ShiftEntity r = StreamSupport.stream(shiftRepository.findAll().spliterator(), false)
-                .findFirst().get();
-        System.out.println(objectMapper.writeValueAsString(r));
+        assertThat(cnt, is(71L));
     }
 
 }
