@@ -25,11 +25,11 @@ insert into shift_date (id, shift_dte, day_idx, day_of_week) values (44, '20-06-
 
 values next value for shift_type_seq;
 values next value for shift_type_seq;
-insert into shift_type (id, type_idx, night, type_cd, start_time, end_time) values (31, 1, false, 'E', '6', '14');
-insert into shift_type (id, type_idx, night, type_cd, start_time, end_time) values (32, 2, false, 'D', '8:30', '17:30');
-insert into shift_type (id, type_idx, night, type_cd, start_time, end_time) values (33, 3, false, 'DH', '68:30', '17:30');
-insert into shift_type (id, type_idx, night, type_cd, start_time, end_time) values (34, 4, false, 'L', '14', '22');
-insert into shift_type (id, type_idx, night, type_cd, start_time, end_time) values (35, 5, true, 'N', '22', '6');
+insert into shift_type (id, type_idx, night, type_cd, start_time, end_time, description) values (31, 1, false, 'E', '6', '14', 'Early');
+insert into shift_type (id, type_idx, night, type_cd, start_time, end_time, description) values (32, 2, false, 'D', '8:30', '17:30', 'Day');
+insert into shift_type (id, type_idx, night, type_cd, start_time, end_time, description) values (33, 3, false, 'DH', '68:30', '17:30', 'Day Header');
+insert into shift_type (id, type_idx, night, type_cd, start_time, end_time, description) values (34, 4, false, 'L', '14', '22', 'Late');
+insert into shift_type (id, type_idx, night, type_cd, start_time, end_time, description) values (35, 5, true, 'N', '22', '6', 'Night');
 
 values next value for skill_seq;
 values next value for skill_seq;

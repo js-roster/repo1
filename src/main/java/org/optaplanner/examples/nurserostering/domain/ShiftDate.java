@@ -111,7 +111,7 @@ public class ShiftDate extends PObject {
 
     @JsonIgnore
     public String getLabel() {
-        return dayOfWeek.getLabel() + " " + dateString.substring(5).replaceAll("\\-", "/");
+        return dayOfWeek.getLabel() + " " + dateString.substring(0, 5).replaceAll("\\-", "/");
     }
 
     @Override
