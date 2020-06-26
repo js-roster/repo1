@@ -134,9 +134,10 @@ public class EmployeeRepositoryTest {
         assertThat(e1.getDayRequestEntities().size(), is(1));
         IntStream.rangeClosed(31, 50).boxed()
                 .flatMap(i ->
-                        Stream.iterate(new int[]{i, i*2%3}, j -> new int[]{j[0], (j[1] + 1) % 3}).limit(2))
+                        Stream.iterate(new int[]{(i - 31) * 2, i, 0}, j -> new int[]{j[0] + 1, j[1], (j[2] + 1) % 2}).limit(2))
+                .map(n -> new int[]{n[0], n[2], n[1], n[0]%14})
                 .forEach(i ->
-                        System.out.println("".format("insert into skill_proficiency (emp_id, skill_id) values(%d, %d);", i[0], 31+i[1])));
+                        System.out.println("".format("insert into request_day (id, on_off, weight, emp_id, shift_dte_id ) values(%d, '%s', 100, %d, %d);", 31+i[0], i[1] == 1?"ON":"OFF", i[2],31+i[3])));
 
     }
 }

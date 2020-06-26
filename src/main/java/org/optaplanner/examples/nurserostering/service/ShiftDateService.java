@@ -5,4 +5,5 @@ import org.optaplanner.examples.nurserostering.entity.ShiftDateEntity;
 
 public interface ShiftDateService {
     ShiftDate fromEntity(ShiftDateEntity entity);
+    ShiftDateEntity fromDomain(ShiftDate dto);
 }

@@ -15,4 +15,14 @@ public class ShiftDateServiceImp implements ShiftDateService {
         shiftDate.setDayOfWeek(entity.getDayOfWeek());
         return shiftDate;
     }
+
+    @Override
+    public ShiftDateEntity fromDomain(ShiftDate dto) {
+        ShiftDateEntity entity = new ShiftDateEntity();
+        entity.setId(Long.valueOf(dto.getId()));
+        entity.setDateString(dto.getDateString());
+        entity.setDayIndex(dto.getDayIndex());
+        entity.setDayOfWeek(dto.getDayOfWeek());
+        return entity;
+    }
 }

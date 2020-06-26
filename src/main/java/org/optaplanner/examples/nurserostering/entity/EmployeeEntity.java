@@ -3,6 +3,7 @@ package org.optaplanner.examples.nurserostering.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,10 +18,10 @@ public class EmployeeEntity {
     String name;
 
     @OneToMany(mappedBy = "employeeEntity")
-    Set<DayRequestEntity> dayRequestEntities;
+    Set<DayRequestEntity> dayRequestEntities = new HashSet<DayRequestEntity>();
 
     @OneToMany(mappedBy = "employeeEntity")
-    Set<ShiftRequestEntity> shiftRequestEntities;
+    Set<ShiftRequestEntity> shiftRequestEntities = new HashSet<ShiftRequestEntity>();
 
     @ManyToMany
     @JoinTable(name = "skill_proficiency",
