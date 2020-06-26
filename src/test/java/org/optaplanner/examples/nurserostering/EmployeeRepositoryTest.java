@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Tag("unit")
 @DataJpaTest
@@ -49,24 +51,24 @@ public class EmployeeRepositoryTest {
     @Test
     public void getAllTest() {
         List<EmployeeEntity> ems = employeeRepository.getAll();
-        assertThat(ems, hasSize(3));
+        assertThat(ems, hasSize(20));
     }
 
     @Test
     public void getByWildName() {
         List<EmployeeEntity> ems = employeeRepository.getByWildName("Jim");
         assertThat(ems, hasSize(0));
-        ems = employeeRepository.getByWildName("Bill");
-        assertThat(ems, hasSize(1));
-        ems = employeeRepository.getByWildName("o");
-        assertThat(ems, hasSize(2));
+        ems = employeeRepository.getByWildName("Emp 4");
+        assertThat(ems, hasSize(10));
+        ems = employeeRepository.getByWildName("emp");
+        assertThat(ems, hasSize(20));
     }
 
     @Test
     public void getByNameTest() {
-        EmployeeEntity r = employeeRepository.getByName("john");
-        assertThat(r.getCode(), is("I0301"));
-        assertThat(r.getName(), is(equalTo("John")));
+        EmployeeEntity r = employeeRepository.getByName("emp 31");
+        assertThat(r.getCode(), is("ID031"));
+        assertThat(r.getName(), is(equalTo("Emp 31")));
     }
 
     @Test
@@ -130,6 +132,11 @@ public class EmployeeRepositoryTest {
     public void dayRequestTest() {
         EmployeeEntity e1 = employeeRepository.findById(1001L).get();
         assertThat(e1.getDayRequestEntities().size(), is(1));
+        IntStream.rangeClosed(31, 50).boxed()
+                .flatMap(i ->
+                        Stream.iterate(new int[]{i, i*2%3}, j -> new int[]{j[0], (j[1] + 1) % 3}).limit(2))
+                .forEach(i ->
+                        System.out.println("".format("insert into skill_proficiency (emp_id, skill_id) values(%d, %d);", i[0], 31+i[1])));
 
     }
 }
