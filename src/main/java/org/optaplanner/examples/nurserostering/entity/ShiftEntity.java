@@ -27,6 +27,9 @@ public class ShiftEntity {
 
     private int index;
 
+    @Column(name = "size")
+    private  int requiredEmployeeSize;
+
     public Long getId() {
         return id;
     }
@@ -57,5 +60,21 @@ public class ShiftEntity {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public Set<ShiftRequestEntity> getShiftRequestEntities() {
+        return shiftRequestEntities;
+    }
+
+    public void setShiftRequestEntities(Set<ShiftRequestEntity> shiftRequestEntities) {
+        this.shiftRequestEntities = shiftRequestEntities;
+    }
+
+    public int getRequiredEmployeeSize() {
+        return requiredEmployeeSize;
+    }
+
+    public void setRequiredEmployeeSize(int requiredEmployeeSize) {
+        this.requiredEmployeeSize = requiredEmployeeSize;
     }
 }

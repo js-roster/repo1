@@ -6,5 +6,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface ShiftTypeService {
-    public ShiftType fromEntity(ShiftTypeEntity entity);
+    ShiftType fromEntity(ShiftTypeEntity entity);
+    ShiftTypeEntity fromDomain(ShiftType dto);
 }

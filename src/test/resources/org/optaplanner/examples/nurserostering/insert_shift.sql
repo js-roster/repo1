@@ -1,1 +1,1 @@
-insert into shift (index, shift_dte_id, shift_type_id, id) values (1,1,1,1)
+insert into shift (index, shift_dte_id, shift_type_id, id,size) values (1,1,1,1,1)

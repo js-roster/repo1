@@ -16,6 +16,7 @@
 
 package org.optaplanner.examples.nurserostering.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.optaplanner.examples.nurserostering.domain.Employee;
 import org.optaplanner.examples.nurserostering.domain.ShiftDate;
@@ -27,6 +28,7 @@ public class DayOnRequest  {
     private ShiftDate shiftDate;
     private int weight;
 
+    @JsonIgnore
     public Employee getEmployee() {
         return employee;
     }

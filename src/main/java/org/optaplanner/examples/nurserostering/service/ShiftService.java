@@ -8,4 +8,5 @@ import java.util.List;
 public interface ShiftService {
     List<Shift > getAll();
     Shift fromEntity(ShiftEntity entity) ;
+    ShiftEntity fromDomain(Shift dao);
 }

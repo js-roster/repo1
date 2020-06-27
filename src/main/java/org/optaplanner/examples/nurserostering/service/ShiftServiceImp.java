@@ -34,6 +34,18 @@ public class ShiftServiceImp implements  ShiftService {
         shift.setIndex(entity.getIndex());
         shift.setShiftType(shiftTypeService.fromEntity(entity.getShiftTypeEntity()));
         shift.setShiftDate(shiftDateService.fromEntity(entity.getShiftDateEntity()));
+        shift.setRequiredEmployeeSize(entity.getRequiredEmployeeSize());
         return shift;
+    }
+
+    @Override
+    public ShiftEntity fromDomain(Shift dto) {
+        ShiftEntity entity = new ShiftEntity();
+        entity.setId((long) dto.getId());
+        entity.setIndex(dto.getIndex());
+        entity.setShiftDateEntity(shiftDateService.fromDomain(dto.getShiftDate()));
+        entity.setShiftTypeEntity(shiftTypeService.fromDomain(dto.getShiftType()));
+        entity.setRequiredEmployeeSize(dto.getRequiredEmployeeSize());
+        return entity;
     }
 }

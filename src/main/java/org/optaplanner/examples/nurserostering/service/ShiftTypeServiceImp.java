@@ -17,4 +17,17 @@ public class ShiftTypeServiceImp implements  ShiftTypeService {
         shiftType.setNight(entity.isNight());
         return shiftType;
     }
+
+    @Override
+    public ShiftTypeEntity fromDomain(ShiftType dto) {
+        ShiftTypeEntity entity = new ShiftTypeEntity();
+        entity.setId((long)dto.getId());
+        entity.setDescription(dto.getDescription());
+        entity.setCode(dto.getCode());
+        entity.setIndex(dto.getIndex());
+        entity.setNight(dto.isNight());
+        entity.setStartTimeString(dto.getStartTimeString());
+        entity.setEndTimeString(dto.getEndTimeString());
+        return entity;
+    }
 }
