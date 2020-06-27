@@ -24,11 +24,11 @@ import org.optaplanner.examples.nurserostering.domain.Shift;
 @XStreamAlias("ShiftOnRequest")
 public class ShiftOnRequest {
 
+    @JsonIgnore
     private Employee employee;
     private Shift shift;
     private int weight;
 
-    @JsonIgnore
     public Employee getEmployee() {
         return employee;
     }

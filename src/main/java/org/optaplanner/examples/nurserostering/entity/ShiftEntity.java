@@ -3,6 +3,7 @@ package org.optaplanner.examples.nurserostering.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,9 @@ public class ShiftEntity {
     @OneToMany(mappedBy = "shiftEntity")
     @JsonIgnore
     Set<ShiftRequestEntity> shiftRequestEntities;
+
+    @OneToMany(mappedBy = "shiftEntity")
+    Set<ShiftAssignmentEntity> shiftAssignmentEntities = new HashSet<ShiftAssignmentEntity>();
 
     private int index;
 
@@ -76,5 +80,13 @@ public class ShiftEntity {
 
     public void setRequiredEmployeeSize(int requiredEmployeeSize) {
         this.requiredEmployeeSize = requiredEmployeeSize;
+    }
+
+    public Set<ShiftAssignmentEntity> getShiftAssignmentEntities() {
+        return shiftAssignmentEntities;
+    }
+
+    public void setShiftAssignmentEntities(Set<ShiftAssignmentEntity> shiftAssignmentEntities) {
+        this.shiftAssignmentEntities = shiftAssignmentEntities;
     }
 }

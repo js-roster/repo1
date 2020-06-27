@@ -24,11 +24,11 @@ import org.optaplanner.examples.nurserostering.domain.ShiftDate;
 @XStreamAlias("DayOnRequest")
 public class DayOnRequest  {
 
+    @JsonIgnore
     private Employee employee;
     private ShiftDate shiftDate;
     private int weight;
 
-    @JsonIgnore
     public Employee getEmployee() {
         return employee;
     }

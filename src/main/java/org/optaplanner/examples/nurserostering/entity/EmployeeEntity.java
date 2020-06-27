@@ -35,6 +35,9 @@ public class EmployeeEntity {
     @JoinColumn(name = "contract_id")
     ContractEntity contractEntity;
 
+    @OneToMany(mappedBy = "employeeEntity")
+    Set<ShiftAssignmentEntity>  shiftAssignmentEntities = new HashSet<ShiftAssignmentEntity>();
+
 
     @Column(name="emp_cd",unique = true, nullable = false,length = 50)
     String code;
@@ -93,5 +96,13 @@ public class EmployeeEntity {
 
     public void setContractEntity(ContractEntity contractEntity) {
         this.contractEntity = contractEntity;
+    }
+
+    public Set<ShiftAssignmentEntity> getShiftAssignmentEntities() {
+        return shiftAssignmentEntities;
+    }
+
+    public void setShiftAssignmentEntities(Set<ShiftAssignmentEntity> shiftAssignmentEntities) {
+        this.shiftAssignmentEntities = shiftAssignmentEntities;
     }
 }
