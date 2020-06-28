@@ -16,6 +16,7 @@
 
 package org.optaplanner.examples.nurserostering.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
@@ -71,22 +72,27 @@ public class ShiftAssignment extends PObject {
     // Complex methods
     // ************************************************************************
 
+    @JsonIgnore
     public ShiftDate getShiftDate() {
         return shift.getShiftDate();
     }
 
+    @JsonIgnore
     public ShiftType getShiftType() {
         return shift.getShiftType();
     }
 
+    @JsonIgnore
     public int getShiftDateDayIndex() {
         return shift.getShiftDate().getDayIndex();
     }
 
+    @JsonIgnore
     public DayOfWeek getShiftDateDayOfWeek() {
         return shift.getShiftDate().getDayOfWeek();
     }
 
+    @JsonIgnore
     public Contract getContract() {
         if (employee == null) {
             return null;
@@ -94,6 +100,7 @@ public class ShiftAssignment extends PObject {
         return employee.getContract();
     }
 
+    @JsonIgnore
     public boolean isWeekend() {
         if (employee == null) {
             return false;
@@ -103,6 +110,7 @@ public class ShiftAssignment extends PObject {
         return weekendDefinition.isWeekend(dayOfWeek);
     }
 
+    @JsonIgnore
     public int getWeekendSundayIndex() {
         return shift.getShiftDate().getWeekendSundayIndex();
     }
