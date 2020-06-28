@@ -1,0 +1,19 @@
+package org.optaplanner.examples.nurserostering;
+
+import org.optaplanner.examples.nurserostering.domain.ShiftAssignment;
+import org.optaplanner.examples.nurserostering.domain.Employee;
+
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+
+global HardSoftScoreHolder scoreHolder;
+
+// ############################################################################
+// Hard constraints
+// ############################################################################
+
+rule "requiredNurse"
+when
+    $assignment: ShiftAssignment($employee: employee == null)
+then
+    scoreHolder.addHardConstraintMatch(kcontext, -100);
+end

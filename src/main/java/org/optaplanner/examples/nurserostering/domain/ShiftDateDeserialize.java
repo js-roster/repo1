@@ -13,6 +13,8 @@ public class ShiftDateDeserialize extends KeyDeserializer {
     @Override
     public ShiftDate deserializeKey(String key, DeserializationContext ctxt) throws IOException {
         if(key == null) return null;
-        return objectMapper.readValue(key, ShiftDate.class);
+        ShiftDate shiftDate = new ShiftDate();
+        shiftDate.setDateString(key);
+        return shiftDate;
     }
 }

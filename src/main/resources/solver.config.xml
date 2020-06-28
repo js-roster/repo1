@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+  <solutionClass>org.optaplanner.examples.nurserostering.domain.NurseRoster</solutionClass>
+  <entityClass>org.optaplanner.examples.nurserostering.domain.ShiftAssignment</entityClass>
+
+  <scoreDirectorFactory>
+      <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
+    <scoreDrl>org/optaplanner/examples/nurserostering/rostering.drl</scoreDrl>
+  </scoreDirectorFactory>
+  <termination>
+    <secondsSpentLimit>20</secondsSpentLimit>
+  </termination>
+</solver>

@@ -35,6 +35,12 @@ public class ShiftAssignment extends PObject {
     // Planning variables: changes during planning, between score calculations.
     private Employee employee;
 
+
+    public ShiftAssignment() {}
+    public ShiftAssignment(Shift shift, int idx) {
+        this.shift = shift;
+        this.indexInShift = idx;
+    }
     public Shift getShift() {
         return shift;
     }

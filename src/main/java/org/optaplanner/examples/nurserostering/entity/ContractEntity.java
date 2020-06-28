@@ -9,9 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "contract")
+@SequenceGenerator(name = "contract_seq")
 public class ContractEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contract_seq")
     Long id;
 
     @Column(name = "cntr_cd", nullable = false, unique = true, length = 30)

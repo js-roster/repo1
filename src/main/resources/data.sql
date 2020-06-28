@@ -9,13 +9,13 @@ insert into shift_date (id, shift_dte, day_idx, day_of_week) values (35, '11-06-
 insert into shift_date (id, shift_dte, day_idx, day_of_week) values (36, '12-06-2020', 5, 'Friday');
 insert into shift_date (id, shift_dte, day_idx, day_of_week) values (37, '13-06-2020', 6, 'Saturday');
 
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (38, '14-06-2020', 0, 'Sunday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (39, '15-06-2020', 1, 'Monday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (40, '16-06-2020', 2, 'Tuesday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (41, '17-06-2020', 3, 'Wednesday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (42, '18-06-2020', 4, 'Thursday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (43, '19-06-2020', 5, 'Friday');
-insert into shift_date (id, shift_dte, day_idx, day_of_week) values (44, '20-06-2020', 6, 'Saturday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (38, '14-06-2020', 7, 'Sunday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (39, '15-06-2020', 8, 'Monday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (40, '16-06-2020', 9, 'Tuesday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (41, '17-06-2020', 10, 'Wednesday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (42, '18-06-2020', 11, 'Thursday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (43, '19-06-2020', 12, 'Friday');
+insert into shift_date (id, shift_dte, day_idx, day_of_week) values (44, '20-06-2020', 13, 'Saturday');
 
 values next value for shift_type_seq;
 values next value for shift_type_seq;
@@ -113,29 +113,34 @@ insert into shift (id, shift_dte_id, shift_type_id, index, size) values (98, 44,
 insert into shift (id, shift_dte_id, shift_type_id, index, size) values (99, 44, 34, 99, 2);
 insert into shift (id, shift_dte_id, shift_type_id, index, size) values (100, 44, 35, 100, 2);
 
+values next value for contract_seq;
+
+insert into contract (id, cntr_cd, description, weekend_definition) values (31,'5_day_per_week', '5 working days per week','SaturdaySunday');
+
+
 values next value for employee_seq;
 values next value for employee_seq;
 values next value for employee_seq;
-insert into employee (id, emp_nm, emp_cd) values(31, 'Emp 31','ID031');
-insert into employee (id, emp_nm, emp_cd) values(32, 'Emp 32','ID032');
-insert into employee (id, emp_nm, emp_cd) values(33, 'Emp 33','ID033');
-insert into employee (id, emp_nm, emp_cd) values(34, 'Emp 34','ID034');
-insert into employee (id, emp_nm, emp_cd) values(35, 'Emp 35','ID035');
-insert into employee (id, emp_nm, emp_cd) values(36, 'Emp 36','ID036');
-insert into employee (id, emp_nm, emp_cd) values(37, 'Emp 37','ID037');
-insert into employee (id, emp_nm, emp_cd) values(38, 'Emp 38','ID038');
-insert into employee (id, emp_nm, emp_cd) values(39, 'Emp 39','ID039');
-insert into employee (id, emp_nm, emp_cd) values(40, 'Emp 40','ID040');
-insert into employee (id, emp_nm, emp_cd) values(41, 'Emp 41','ID041');
-insert into employee (id, emp_nm, emp_cd) values(42, 'Emp 42','ID042');
-insert into employee (id, emp_nm, emp_cd) values(43, 'Emp 43','ID043');
-insert into employee (id, emp_nm, emp_cd) values(44, 'Emp 44','ID044');
-insert into employee (id, emp_nm, emp_cd) values(45, 'Emp 45','ID045');
-insert into employee (id, emp_nm, emp_cd) values(46, 'Emp 46','ID046');
-insert into employee (id, emp_nm, emp_cd) values(47, 'Emp 47','ID047');
-insert into employee (id, emp_nm, emp_cd) values(48, 'Emp 48','ID048');
-insert into employee (id, emp_nm, emp_cd) values(49, 'Emp 49','ID049');
-insert into employee (id, emp_nm, emp_cd) values(50, 'Emp 50','ID050');
+insert into employee (id, emp_nm, emp_cd, contract_id) values(31, 'Emp 31','ID031', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(32, 'Emp 32','ID032', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(33, 'Emp 33','ID033', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(34, 'Emp 34','ID034', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(35, 'Emp 35','ID035', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(36, 'Emp 36','ID036', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(37, 'Emp 37','ID037', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(38, 'Emp 38','ID038', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(39, 'Emp 39','ID039', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(40, 'Emp 40','ID040', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(41, 'Emp 41','ID041', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(42, 'Emp 42','ID042', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(43, 'Emp 43','ID043', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(44, 'Emp 44','ID044', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(45, 'Emp 45','ID045', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(46, 'Emp 46','ID046', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(47, 'Emp 47','ID047', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(48, 'Emp 48','ID048', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(49, 'Emp 49','ID049', 31);
+insert into employee (id, emp_nm, emp_cd, contract_id) values(50, 'Emp 50','ID050', 31);
 
 
 insert into skill_proficiency (emp_id, skill_id) values(31, 33);
@@ -222,3 +227,5 @@ insert into request_day (id, on_off, weight, emp_id, shift_dte_id ) values(67, '
 insert into request_day (id, on_off, weight, emp_id, shift_dte_id ) values(68, 'ON', 100, 49, 40);
 insert into request_day (id, on_off, weight, emp_id, shift_dte_id ) values(69, 'OFF', 100, 50, 41);
 insert into request_day (id, on_off, weight, emp_id, shift_dte_id ) values(70, 'ON', 100, 50, 42);
+
+

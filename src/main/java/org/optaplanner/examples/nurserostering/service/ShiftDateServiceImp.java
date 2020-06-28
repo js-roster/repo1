@@ -4,7 +4,10 @@ import org.optaplanner.examples.nurserostering.domain.ShiftDate;
 import org.optaplanner.examples.nurserostering.entity.ShiftDateEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ShiftDateServiceImp implements ShiftDateService {
     @Override
     public ShiftDate fromEntity(ShiftDateEntity entity) {

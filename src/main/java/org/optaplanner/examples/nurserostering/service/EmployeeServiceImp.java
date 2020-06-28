@@ -6,15 +6,18 @@ import org.optaplanner.examples.nurserostering.domain.request.DayOnRequest;
 import org.optaplanner.examples.nurserostering.entity.DayOffRequestEntity;
 import org.optaplanner.examples.nurserostering.entity.DayOnRequestEntity;
 import org.optaplanner.examples.nurserostering.entity.EmployeeEntity;
+import org.optaplanner.examples.nurserostering.repo.ContractRepository;
 import org.optaplanner.examples.nurserostering.repo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class EmployeeServiceImp implements EmployeeService {
 
     @Autowired
@@ -22,6 +25,12 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Autowired
     DayRequestService dayRequestService;
+
+    @Autowired
+    ContractService contractService;
+
+    @Autowired
+    ContractRepository contractRepository;
 
     @Override
     public List<Employee> getAllEmployee() {
@@ -51,6 +60,7 @@ public class EmployeeServiceImp implements EmployeeService {
         employee.setId(employeeEntity.getId().intValue());
         employee.setName(employeeEntity.getName());
         employee.setCode(employeeEntity.getCode());
+        employee.setContract(contractService.fromEntity(employeeEntity.getContractEntity()));
 
         employee.setDayOffRequestMap(employeeEntity.getDayRequestEntities().stream()
                 .filter(e ->  e instanceof DayOffRequestEntity)
@@ -72,6 +82,8 @@ public class EmployeeServiceImp implements EmployeeService {
         employeeEntity.setId(Long.valueOf(employee.getId()));
         employeeEntity.setCode(employee.getCode());
         employeeEntity.setName(employee.getName());
+        employeeEntity.setContractEntity(
+                contractRepository.save(contractService.fromDomain(employee.getContract())));
         return employeeEntity;
     }
 }

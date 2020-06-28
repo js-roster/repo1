@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
@@ -224,9 +225,13 @@ public class NurseRoster extends PObject implements Solution<HardSoftScore> {
     // Complex methods
     // ************************************************************************
 
+    @JsonIgnore
     public Collection<? extends Object> getProblemFacts() {
         List<Object> facts = new ArrayList<Object>();
         facts.add(nurseRosterParametrization);
+        facts.addAll(employeeList);
+
+/*
         facts.addAll(skillList);
         facts.addAll(shiftTypeList);
         facts.addAll(shiftTypeSkillRequirementList);
@@ -234,7 +239,6 @@ public class NurseRoster extends PObject implements Solution<HardSoftScore> {
         facts.addAll(contractList);
         facts.addAll(contractLineList);
         facts.addAll(patternContractLineList);
-        facts.addAll(employeeList);
         facts.addAll(skillProficiencyList);
         facts.addAll(shiftDateList);
         facts.addAll(shiftList);
@@ -242,6 +246,7 @@ public class NurseRoster extends PObject implements Solution<HardSoftScore> {
         facts.addAll(dayOnRequestList);
         facts.addAll(shiftOffRequestList);
         facts.addAll(shiftOnRequestList);
+*/
         // Do not add the planning entity's (shiftAssignmentList) because that will be done automatically
         return facts;
     }
