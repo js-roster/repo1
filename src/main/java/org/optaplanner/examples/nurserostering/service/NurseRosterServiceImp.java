@@ -6,6 +6,7 @@ import org.optaplanner.core.api.solver.SolverFactory;
 import org.optaplanner.examples.nurserostering.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,14 +63,15 @@ public class NurseRosterServiceImp implements NurseRosterService {
 
     @Override
     @Async
-    public void solve(final String id, NurseRoster problem) {
+    public Future<NurseRoster> solve(final String id, NurseRoster problem) {
         SolverFactory<NurseRoster> solverFactory = SolverFactory.createFromXmlResource("solver.config.xml");
         Solver<NurseRoster> solver = solverFactory.buildSolver();
 
         solver.addEventListener(v -> {
             this.solutionMap.put(id,v.getNewBestSolution());
         });
-        solver.solve(problem);
+        NurseRoster solution = solver.solve(problem);
+        return new AsyncResult<NurseRoster>(solution);
     }
 
     @Override

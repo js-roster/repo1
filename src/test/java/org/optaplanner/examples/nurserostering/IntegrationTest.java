@@ -77,13 +77,5 @@ public class IntegrationTest {
                 .expectStatus().isOk()
                 .expectBody()
                 .jsonPath("$.code").isNotEmpty();
-
-        client.get()
-                .uri("/solution/{id}", id)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody()
-                .jsonPath("$.code").isNotEmpty();
-
     }
 }

@@ -5,26 +5,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.optaplanner.examples.nurserostering.domain.*;
-import org.optaplanner.examples.nurserostering.repo.EmployeeRepository;
-import org.optaplanner.examples.nurserostering.repo.ShiftRepository;
-import org.optaplanner.examples.nurserostering.service.EmployeeService;
+import org.optaplanner.examples.nurserostering.domain.DayOfWeek;
+import org.optaplanner.examples.nurserostering.domain.NurseRoster;
+import org.optaplanner.examples.nurserostering.domain.ShiftDate;
 import org.optaplanner.examples.nurserostering.service.NurseRosterService;
-import org.optaplanner.examples.nurserostering.service.ShiftService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.hamcrest.Matchers.*;
+
 
 @Tag("unit")
 @SpringBootTest
@@ -46,17 +43,14 @@ public class OptaplannerTest {
     }
 
     @Test
-    public void solvingTest() throws JsonProcessingException {
+    public void solvingTest() throws InterruptedException, ExecutionException {
+        String id = "Test";
         NurseRoster roster = service.getProblem();
         assertThat(roster, notNullValue());
-    }
+        NurseRoster solution = service.solve(id, roster).get();
 
-    @Test
-    void lambdaExpressions() {
-        assertTrue(Stream.of(1, 2, 3)
-                //.stream()
-                .mapToInt(i -> i)
-                .sum() > 5, () -> "Sum should be greater than 5");
+        assertThat(solution, notNullValue());
+        assertThat(solution.getScore().getHardScore(), is(0));
     }
 
     @Test

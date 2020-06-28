@@ -38,7 +38,7 @@ public class ContractRepositoryTest {
     })
     public void findAllTest() throws JsonProcessingException {
         long cnt = StreamSupport.stream(contractRepository.findAll().spliterator(), false).count();
-        assertThat(cnt, is(1L));
+        assertThat(cnt, is(2L));
         ContractEntity contractEntity = contractRepository.findById(1L).orElseThrow(IllegalAccessError::new);
         System.out.println("contract entity: " + objectMapper.writeValueAsString(contractEntity));
     }

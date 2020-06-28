@@ -17,3 +17,11 @@ when
 then
     scoreHolder.addHardConstraintMatch(kcontext, -100);
 end
+
+rule "oneDayOneShift"
+when
+    $assignment: ShiftAssignment($employee: employee != null, $dayIndex: shift.shiftDate.dayIndex)
+    ShiftAssignment(this != $assignment, employee == $employee, shift.shiftDate.dayIndex == $dayIndex)
+then
+    scoreHolder.addHardConstraintMatch(kcontext, -100);
+end
